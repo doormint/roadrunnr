@@ -1,0 +1,7 @@
+---
+base_url: http://128.199.241.199/
+client_id:
+client_secret: 
+headers:
+  Content-Type: application/json
+  Authorization: Token CpDMGf0ls4Ri0GGjh44QwkndMjicI9YjzEpd9XbO
