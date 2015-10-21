@@ -21,6 +21,10 @@ class User
     @full_address.add_full_address(address, locality_name, sub_locality_name, city_name, geo_latitude, geo_longitude)
   end
 
+  def valid?
+    name.present? && phone_no.present? && type.present? && external_id.present? && email.present? && full_address.valid?
+  end
+
   def save
     {
       'name'=> @name,

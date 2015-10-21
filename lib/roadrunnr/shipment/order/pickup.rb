@@ -17,6 +17,10 @@ class Pickup
     @user.add_user_full_address(address, locality_name, sub_locality_name, city_name, geo_latitude, geo_longitude)
   end
 
+  def valid?
+    user.valid?
+  end
+
   def save
     { 'user'=> @user.save }
   end

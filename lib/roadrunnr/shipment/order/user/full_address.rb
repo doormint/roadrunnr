@@ -24,6 +24,10 @@ class FullAddress
     Geo.new
   end
 
+  def valid?
+    address.present? && locality.valid? && sub_locality.valid? && city.valid? && geo.valid?
+  end
+
   def add_full_address(address, locality_name, sub_locality_name, city_name, geo_latitude, geo_longitude)
     @address = address
     @locality.add_name(locality_name)
@@ -50,6 +54,10 @@ class Name
     @name = name
   end
 
+  def valid?
+    name.present?
+  end
+
   def save
     { 'name'=> @name }
   end
@@ -67,6 +75,10 @@ class Geo
   def add_geo(latitude, longitude)
     @latitude = latitude
     @longitude = longitude
+  end
+
+  def valid?
+    latitude.present? && longitude.present?
   end
 
   def save

@@ -15,6 +15,7 @@ class Shipment
 
   def create_shipment
     url = YAML.load(File.read('config.yml'))["base_url"] + "v1/orders/ship"
+    binding.pry
     HTTParty.post(url, :body => @order.save.to_json, :headers => @headers)
   end
 

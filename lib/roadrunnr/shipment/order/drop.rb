@@ -9,6 +9,10 @@ class Drop
     User.new
   end
 
+  def valid?
+    user.valid?
+  end
+
   def add_user_details(name, phone_no, email, type, external_id)
     @user.add_user_details(name, phone_no, email, type, external_id)
   end

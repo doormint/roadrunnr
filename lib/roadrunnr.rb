@@ -1,8 +1,9 @@
 require 'httparty'
 require 'json'
 require 'yaml'
-
+require 'active_support/core_ext/object/blank'
 require 'roadrunnr/shipment/order'
+require 'roadrunnr/request'
 require 'roadrunnr/headers'
 require 'roadrunnr/shipment'
 require 'roadrunnr/track'

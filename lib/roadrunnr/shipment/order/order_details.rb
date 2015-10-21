@@ -21,6 +21,10 @@ class OrderDetails
     @order_items << OrderItem.new(quantity, price, item_name).save
   end
 
+  def valid?
+    order_id.present? && order_value.present? && amount_to_be_collected.present? && order_type.valid?
+  end
+
   def save
       {
         'order_id'=> @order_id,
@@ -34,6 +38,10 @@ end
 
 class OrderType
   attr_accessor :name
+
+  def valid?
+    name.present?
+  end
 
   def save
     return { 'name'=> @name }
