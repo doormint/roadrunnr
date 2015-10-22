@@ -17,11 +17,25 @@ Or install it yourself as:
     $ gem install roadrunnr
 
 ## Usage
-  **Set client_id and client_secret in config.yml**
+Obtain  access_toek from http://128.199.241.199/oauth/token?grant_type=client_credentials&client_id=123&client_secret=secret for staging/testing environment and change host to http://roadrunnr.in/ for production ENV
 
-  **Create an order**
+**Creating roadrunnr request object**
 
-    order = Order.build
+   
+
+    request = Roadrunnr::Request.new(:client_id => '123', 
+                    :client_secret => 'secret', 
+                    :timeout => 60, 
+                    :access_token => 'token', 
+                    :url => 'http://128.199.241.199/')
+
+Set the values according to ENV
+
+
+
+  **Build an order**
+
+    order = Roadrunnr::Order.new
     order.add_pickup_details(name, phone_no, email, type, external_id)
     order.add_pickup_full_address("address, locality_name, sub_locality_name, city_name, geo_latitude, geo_longitude")
 
@@ -34,28 +48,24 @@ Or install it yourself as:
     order.add_created_at(created_at)
     order.add_callback_url(callback_url)
 
-  **Make shipment**
+  **Get serviceability before creating order**
+  
+    request.serviceability(order)
 
-    shipment = Shipment.build order
-    shipment.create_shipment
 
-  **Track shipment**
+  **Create an order**
+  
+    request.create_order(order)
 
-  shipment.create_shipment
 
-  **Cancel shipment**
+  **Track order**
 
-  shipment.cancel_shipment
+    request.track_order(order_id)
 
-  **Get serviceability before creating shipment**
+  **Cancel order**   
 
-  shipment.serviceability
+  request.cancel_order(order_id)
 
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
 ## Contributing
 

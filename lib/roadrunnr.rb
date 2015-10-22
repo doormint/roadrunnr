@@ -13,5 +13,4 @@ require 'roadrunnr/order_item'
 require "roadrunnr/version"
 
 module Roadrunnr
-  # Your code goes here...
 end
