@@ -1,4 +1,4 @@
-require_relative '../../spec_helper'
+require 'spec_helper'
 
 describe Roadrunnr::Order do
 
@@ -21,9 +21,11 @@ describe Roadrunnr::Order do
     expect(order.order_details.valid?).to eq(true)
     expect(order.valid?).to eq(true)
     expect(request).to respond_to(:create_order).with(1).argument
-    request.create_order(order)
-
-    binding.pry
+    expect(request).to respond_to(:cancel_order).with(1).argument
+    expect(request).to respond_to(:track_order).with(1).argument
+    expect(request).to respond_to(:serviceability).with(1).argument
+    order_id = '1234'
+    expect(request.valid_checksum?(:checksum => '3741049b355fa6e15ac753e9e952afea', :order_id => order_id)).to eq(true)
   end
 
 end

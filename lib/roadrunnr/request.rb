@@ -13,7 +13,25 @@ module Roadrunnr
     end
 
     def create_order(order_object)
-      HTTParty.post(x, :body => order_object.save.to_json, :headers => {'Content-Type' => 'application/json', "Authorization" => "Token #{self.access_token}"})
+      HTTParty.post(url + "v1/orders", :body => order_object.save.to_json, :headers => {'Content-Type' => 'application/json', "Authorization" => "Token #{self.access_token}"})
+    end
+
+    def cancel_order(order_id)
+      HTTParty.get(url + "v1/orders/#{order_id}/cancel", :headers => {'Content-Type' => 'application/json', "Authorization" => "Token #{self.access_token}"})
+    end
+
+    def track_order(order_id)
+      HTTParty.get(url + "v1/orders/#{order_id}/track", :headers => {'Content-Type' => 'application/json', "Authorization" => "Token #{self.access_token}"})
+    end 
+
+    def serviceability(order_object)
+      HTTParty.post(url + '/v1/orders/serviceability', body: order_object.save.to_json, :headers => {'Content-Type' => 'application/json', "Authorization" => "Token #{self.access_token}"})
+    end
+
+    def valid_checksum?(options = {})
+      checksum = options[:checksum]
+      order_id = options[:order_id]
+      checksum == Digest::MD5.hexdigest(order_id + self.access_token)
     end
 
     protected

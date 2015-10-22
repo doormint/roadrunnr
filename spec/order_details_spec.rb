@@ -1,8 +1,8 @@
-require_relative '../../spec_helper'
+require "spec_helper"
 
-describe OrderDetails do
+describe Roadrunnr::OrderDetails do
   before do
-    @order =  CreateOrder.create
+    @order =  create_order
   end
 
   it "order_details has order_id" do

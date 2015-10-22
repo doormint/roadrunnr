@@ -1,8 +1,8 @@
-require_relative '../../spec_helper'
+require "spec_helper"
 
-describe Drop do
+describe Roadrunnr::Drop do
   before do
-    @order =  CreateOrder.create
+    @order =  create_order
   end
 
   it "drop has name" do
