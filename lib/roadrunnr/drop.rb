@@ -18,7 +18,7 @@ module Roadrunnr
       @user.add_user_details(name, phone_no, email, type, external_id)
     end
 
-    def add_user_full_address(address, locality_name, sub_locality_name, city_name, geo_latitude, geo_longitude)
+    def add_user_full_address(address, locality_name, sub_locality_name, city_name, geo_latitude=nil, geo_longitude=nil)
       @user.add_user_full_address(address, locality_name, sub_locality_name, city_name, geo_latitude, geo_longitude)
     end
 
