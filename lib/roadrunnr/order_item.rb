@@ -3,9 +3,10 @@ module Roadrunnr
   class OrderItem
     attr_accessor :quantity, :price, :item
 
-    def initialize(quantity, price, item_name)
-      @quantity = quantity
-      @price = price
+    def initialize(options = {})
+      @quantity = options[:quantity]
+      @price = options[:price]
+      item_name = options[:item_name]
       @item = create_item(item_name)
     end
 

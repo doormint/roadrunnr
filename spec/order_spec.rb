@@ -8,16 +8,18 @@ describe Roadrunnr::Order do
   it 'should create order object' do
     order = Roadrunnr::Order.new(:callback_url => 'http://google.com')
     expect(order.callback_url).to eq('http://google.com')
-    order.add_pickup_details("Samsung store", "08056190907", "samsung@gmail.com", "merchant", "BLR-NAT-123")
+    order.add_pickup_details(:name => "Samsung store", :phone_no => "08056190907", :email => "samsung@gmail.com", :type => "merchant", :external_id => "BLR-NAT-123")
     expect(order.pickup.valid?).to be(false)
-    order.add_pickup_full_address("Shop no 51, 5th block", "Koramangala", "5th block", "Bangalore", "12.935322", "77.618754")
+    order.add_pickup_full_address(:address => "Shop no 51, 5th block", :locality => "Koramangala", :sub_locality => "5th block", 
+                                  :city => "Bangalore", :lat => "12.935322", :lng => "77.618754")
     expect(order.pickup.valid?).to be(true)
     expect(order.drop.valid?).to be(false)
-    order.add_drop_details("Samsung store", "08056190907", "samsung@gmail.com", "merchant", "BLR-NAT-123")
+    order.add_drop_details(:name => "Samsung store", :phone_no => "08056190907", :email => "samsung@gmail.com", :type => "merchant", :external_id => "BLR-NAT-123")
     expect(order.drop.valid?).to be(false)
-    order.add_drop_full_address("Shop no 51, 5th block", "Koramangala", "5th block", "Bangalore", "12.935322", "77.618754")
+    order.add_drop_full_address(:address => "Shop no 51, 5th block", :locality => "Koramangala", :sub_locality => "5th block", 
+                                :city => "Bangalore", :lat => "12.935322", :lng => "77.618754")
     expect(order.drop.valid?).to be(true)
-    order.add_order_details("last2091020", "255.0", "234.45", "Cash On Delivery")
+    order.add_order_details(:order_id => "last2091020", :order_value => "255.0", :amount_to_be_collected => "234.45", :order_type => "Cash On Delivery")
     expect(order.order_details.valid?).to eq(true)
     expect(order.valid?).to eq(true)
     expect(request).to respond_to(:create_order).with(1).argument

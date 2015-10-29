@@ -10,7 +10,7 @@ describe Roadrunnr::Drop do
   end
 
   it "drop has phone_no" do
-    expect(@order.drop.user.phone_no).to eq("9656190907")
+    expect(@order.drop.user.phone_no).to eq("1234567890")
   end
 
   it "drop has email" do
@@ -22,7 +22,7 @@ describe Roadrunnr::Drop do
   end
 
   it "drop has external_id" do
-    expect(@order.drop.user.external_id).to eq("MND-756")
+    expect(@order.drop.user.external_id).to eq("BLR-NAT-123")
   end
 
   it "drop has full_address address" do

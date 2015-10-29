@@ -3,49 +3,39 @@ module Roadrunnr
     attr_accessor :address, :locality, :sub_locality, :city, :geo
 
     def initialize
-      @locality = create_locality
-      @sub_locality = create_sub_locality
-      @city = create_city
-      @geo = create_geo
+      @locality = Locality.new
+      @sub_locality = SubLocality.new
+      @city = City.new
+      @geo = Geo.new
     end
 
-    def create_locality
-      Locality.new
-    end
-
-    def create_sub_locality
-      SubLocality.new
-    end
-
-    def create_city
-      City.new
-    end
-
-    def create_geo
-      Geo.new
-    end
 
     def valid?
       address.present? && locality.valid? && sub_locality.valid? && city.valid? && geo.valid?
     end
 
-    def add_full_address(address, locality_name, sub_locality_name, city_name, geo_latitude=nil, geo_longitude=nil)
-      @address = address
-      @locality.add_name(locality_name)
-      @sub_locality.add_name(sub_locality_name)
-      @city.add_name(city_name)
-      @geo.add_geo(geo_latitude, geo_longitude)
+    def add_full_address(options = {})
+      @address = options[:address]
+      locality = options[:locality]
+      sub_locality = options[:sub_locality]
+      city = options[:city]
+      lat = options[:lat]
+      lng = options[:lng]
+      @locality.add_name(locality)
+      @sub_locality.add_name(sub_locality)
+      @city.add_name(city)
+      @geo.add_geo(lat, lng)
     end
 
     def save
-        {
-          'address'=> @address,
-          'locality'=> @locality.save,
-          'sub_locality'=> @sub_locality.save,
-          'city'=> @city.save,
-          'geo'=> @geo.save
-        }
-      end
+      {
+        'address'=> @address,
+        'locality'=> @locality.save,
+        'sub_locality'=> @sub_locality.save,
+        'city'=> @city.save,
+        'geo'=> @geo.save
+      }
+    end
   end
 
   class Name
