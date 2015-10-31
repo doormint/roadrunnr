@@ -13,6 +13,10 @@ describe Roadrunnr::OrderDetails do
     expect(@order.order_details.order_value).to eq("255.0")
   end
 
+  it 'order_details has expected_delivery_time' do
+    expect(@order.order_details.expected_delivery_time).to eq("2015-10-30 19:01:47 +0530")
+  end
+
   it "order_details has amount_to_be_collected" do
     expect(@order.order_details.amount_to_be_collected).to eq("234.45")
   end

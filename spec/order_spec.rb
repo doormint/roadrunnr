@@ -19,7 +19,7 @@ describe Roadrunnr::Order do
     order.add_drop_full_address(:address => "Shop no 51, 5th block", :locality => "Koramangala", :sub_locality => "5th block", 
                                 :city => "Bangalore", :lat => "12.935322", :lng => "77.618754")
     expect(order.drop.valid?).to be(true)
-    order.add_order_details(:order_id => "last2091020", :order_value => "255.0", :amount_to_be_collected => "234.45", :order_type => "Cash On Delivery")
+    order.add_order_details(:order_id => "last2091020", :order_value => "255.0", :amount_to_be_collected => "234.45", :order_type => "Cash On Delivery", :expected_delivery_time => Time.now)
     expect(order.order_details.valid?).to eq(true)
     expect(order.valid?).to eq(true)
     expect(request).to respond_to(:create_order).with(1).argument

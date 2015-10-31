@@ -1,6 +1,6 @@
 module Roadrunnr
   class OrderDetails
-    attr_accessor :order_id, :order_value, :amount_to_be_collected, :order_type, :order_items
+    attr_accessor :order_id, :order_value, :amount_to_be_collected, :order_type, :order_items, :expected_delivery_time
 
     def initialize
       @order_type = OrderType.new
@@ -10,7 +10,9 @@ module Roadrunnr
     def add_order(options = {})
       @order_id = options[:order_id]
       @order_value = options[:order_value]
+      @expected_delivery_time = options[:expected_delivery_time]
       @amount_to_be_collected = options[:amount_to_be_collected]
+
       @order_type.name = options[:order_type]
     end
 
@@ -27,6 +29,7 @@ module Roadrunnr
       {
         'order_id'=> @order_id,
         'order_value'=> @order_value,
+        'expected_delivery_time' => @expected_delivery_time,
         'amount_to_be_collected'=> @amount_to_be_collected,
         'order_type'=> @order_type.save,
         'order_items'=> @order_items

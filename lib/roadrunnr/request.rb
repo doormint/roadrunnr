@@ -25,7 +25,7 @@ module Roadrunnr
     end 
 
     def serviceability(order_object)
-      HTTParty.post(url + '/v1/orders/serviceability', body: order_object.save.to_json, :headers => {'Content-Type' => 'application/json', "Authorization" => "Token #{self.access_token}"})
+      HTTParty.post(url + 'v1/orders/serviceability', body: order_object.save.to_json, :headers => {'Content-Type' => 'application/json', "Authorization" => "Token #{self.access_token}"})
     end
 
     def valid_checksum?(options = {})
