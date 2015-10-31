@@ -36,17 +36,16 @@ Set the values according to ENV
   **Build an order**
 
     order = Roadrunnr::Order.new
-    order.add_pickup_details(name, phone_no, email, type, external_id)
-    order.add_pickup_full_address("address, locality_name, sub_locality_name, city_name, geo_latitude, geo_longitude")
+    order.add_pickup_details(:name => "Samsung store", :phone_no => "1234567890", :email => "samsung@gmail.com", :type => "merchant", :external_id => "BLR-NAT-123")
+    
+    order.add_pickup_full_address(:address => "Shop no 51, 5th block", :locality => "Koramangala", :sub_locality => "5th :city => "Bangalore", :lat => "12.935322", :lng => "77.618754")
 
-    order.add_drop_details(name, phone_no, email, type, external_id)
-    order.add_drop_full_address("address, locality_name, sub_locality_name, city_name, geo_latitude, geo_longitude")
+  order.add_drop_details(:name => "Samsung store", :phone_no => "08056190907", :email => "samsung@gmail.com", :type => "merchant", :external_id => "BLR-NAT-123")
 
-    order.add_order_details(order_id, order_value, amount_to_be_collected, order_type_name)
-    order.add_order_item(quantity, price, item_name)
+  order.add_drop_full_address(:address => "Shop no 51, 5th block", :locality => "Koramangala", :sub_locality => "5th block", :city => "Bangalore", :lat => "12.935322", :lng => "77.618754")
 
-    order.add_created_at(created_at)
-    order.add_callback_url(callback_url)
+  order.add_order_details(:order_id => "last2091020", :order_value => "255.0", :amount_to_be_collected => "234.45", :order_type => "Cash On Delivery", :expected_delivery_time => Time.now)
+                                  
 
   **Get serviceability before creating order**
   
@@ -64,7 +63,7 @@ Set the values according to ENV
 
   **Cancel order**   
 
-  request.cancel_order(order_id)
+    request.cancel_order(order_id)
 
 
 ## Contributing
