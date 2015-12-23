@@ -13,7 +13,11 @@ module Roadrunnr
     end
 
     def create_order(order_object)
-      HTTParty.post(url + "v1/orders/ship", :body => order_object.save.to_json, :headers => {'Content-Type' => 'application/json', "Authorization" => "Token #{self.access_token}"})
+      HTTParty.post(url + "v1/orders", :body => order_object.save.to_json, :headers => {'Content-Type' => 'application/json', "Authorization" => "Token #{self.access_token}"})
+    end
+
+    def ship_order(order_id)
+      HTTParty.post(url + "v1/orders/#{order_id}/ship", :headers => {'Content-Type' => 'application/json', "Authorization" => "Token #{self.access_token}"})
     end
 
     def cancel_order(order_id)
