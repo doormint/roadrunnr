@@ -59,8 +59,9 @@ module Roadrunnr
       amount_to_be_collected = options[:amount_to_be_collected]
       order_type = options[:order_type]
       expected_delivery_time = options[:expected_delivery_time]
+      expected_pickup_time = options[:expected_pickup_time]
       @order_details.add_order(:order_id => order_id, :order_value => order_value, :amount_to_be_collected => amount_to_be_collected, 
-                               :order_type => order_type, :expected_delivery_time => expected_delivery_time)
+                               :order_type => order_type, :expected_delivery_time => expected_delivery_time, :expected_pickup_time => expected_pickup_time)
     end
 
     def add_order_item(options = {})
